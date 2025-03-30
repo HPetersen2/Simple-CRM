@@ -6,16 +6,13 @@
             <th>E-Mail</th>
             <th>City</th>
         </tr>
-        <tr>
-            <td>sfas</td>
-            <td>asf</td>
-            <td>adsfsf</td>
+        @for (user of allUsers; track $index) {
+        <tr [routerLink]="['/user/' + user.id]">
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.city }}</td>
         </tr>
-        <tr>
-            <td>sfas</td>
-            <td>asf</td>
-            <td>adsfsf</td>
-        </tr>
+        }
     </table>
 </mat-card>
 

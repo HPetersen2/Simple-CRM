@@ -36,6 +36,7 @@ export class DialogAddUserComponent {
   user: User = {
     firstName: "",
     lastName: "",
+    email: "",
     birthDate: new Date(),
     street: "",
     zipCode: 0,
@@ -51,6 +52,7 @@ export class DialogAddUserComponent {
       street: this.user.street,
       zipCode: this.user.zipCode,
       city: this.user.city,
+      email: this.user.email,
     });
     this.loading = false;
     this.dialogRef.close();
