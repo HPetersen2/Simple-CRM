@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule, AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
@@ -27,7 +27,7 @@ export class DialogAddUserComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
-  loading:boolean = false;
+  loading:boolean = true;
 
   firestore = inject(Firestore);
   userCollection = collection(this.firestore, 'users');

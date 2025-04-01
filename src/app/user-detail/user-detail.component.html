@@ -3,6 +3,14 @@
     <img src="assets/img/profile.jpg" alt="profile">
 
     <div class="user-details">
+        <mat-menu #userMenu="matMenu">
+            <ng-template matMenuContent>
+              <button mat-menu-item (click)="editUserDetail()">Edit</button>
+            </ng-template>
+          </mat-menu>
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
         <h2>{{ userData[0].firstName}} {{ userData[0].lastName }}</h2>
         {{ userData[0].email }}
     </div>
@@ -10,6 +18,14 @@
 
 <mat-card class="mt-32">
     <mat-card-header>
+        <mat-menu #addressMenu="matMenu">
+            <ng-template matMenuContent>
+              <button mat-menu-item (click)="editMenu()">Edit</button>
+            </ng-template>
+          </mat-menu>
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
         <mat-card-title>Address</mat-card-title>
     </mat-card-header>
     <mat-card-content>

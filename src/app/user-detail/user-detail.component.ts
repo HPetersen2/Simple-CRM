@@ -3,17 +3,23 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, doc, onSnapshot } from "firebase/firestore";
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, MatMenuModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
 export class UserDetailComponent {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, public dialog:MatDialog) {}
 
   userId:any = '';
   firestore = inject(Firestore);
@@ -29,6 +35,13 @@ export class UserDetailComponent {
     });
   }
 
+  editMenu() {
+    this.dialog.open(DialogEditAdressComponent);
+  }
+
+  editUserDetail() {
+    this.dialog.open(DialogEditUserComponent);
+  }
 
 
 }
