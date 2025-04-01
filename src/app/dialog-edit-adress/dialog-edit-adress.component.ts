@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class DialogEditAdressComponent {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, public dialogRef: MatDialogRef<DialogEditAdressComponent>) {}
 
   loading:boolean = false;
 
@@ -41,5 +41,15 @@ export class DialogEditAdressComponent {
       this.userData.push(doc.data());
     });
   }
+
+  closeEditUser() {
+    this.dialogRef.close(DialogEditAdressComponent);
+  }
+
+  saveUser() {
+    this.dialogRef.close(DialogEditAdressComponent);
+  }
+
+  
 
 }
