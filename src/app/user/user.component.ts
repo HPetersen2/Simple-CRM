@@ -31,7 +31,9 @@ export class UserComponent {
       this.allUsers = [];
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
-        this.allUsers.push({ id: doc.id, ...userData });
+        userData['userID'] = doc.id;
+        this.allUsers.push(userData);
+        console.log(this.allUsers[0].firstName)
       });
     });
   }
