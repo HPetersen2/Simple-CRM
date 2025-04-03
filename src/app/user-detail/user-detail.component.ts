@@ -35,8 +35,9 @@ export class UserDetailComponent {
     });
   }
 
-  editMenu() {
-    this.dialog.open(DialogEditAdressComponent);
+  editAdress() {
+    const dialog = this.dialog.open(DialogEditAdressComponent);
+    dialog.componentInstance.userData = this.userData[0];
   }
 
   editUserDetail() {
