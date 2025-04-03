@@ -31,13 +31,13 @@ export class UserDetailComponent {
     });
 
     const unsub = onSnapshot(doc(this.firestore, "users", this.userId), (doc) => {
-      this.userData.push(doc.data());
+      this.userData = doc.data();
     });
   }
 
   editAdress() {
     const dialog = this.dialog.open(DialogEditAdressComponent);
-    dialog.componentInstance.userData = this.userData[0];
+    dialog.componentInstance.userData = this.userData;
   }
 
   editUserDetail() {

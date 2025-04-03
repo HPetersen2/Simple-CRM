@@ -25,7 +25,7 @@ export class UserComponent {
   userCollection = collection(this.firestore, 'users');
   allUsers:any = [];
 
-  ngOnInit() {
+  ngOnInit(): void {
     const q = query(collection(this.firestore, "users"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       this.allUsers = [];
@@ -33,7 +33,6 @@ export class UserComponent {
         const userData = doc.data();
         userData['userID'] = doc.id;
         this.allUsers.push(userData);
-        console.log(this.allUsers[0].firstName)
       });
     });
   }

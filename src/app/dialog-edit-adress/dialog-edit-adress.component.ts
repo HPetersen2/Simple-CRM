@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Firestore } from '@angular/fire/firestore';
-import { onSnapshot, doc } from '@firebase/firestore';
+import { onSnapshot, doc, setDoc } from '@firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormField } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-dialog-edit-adress',
@@ -25,7 +26,7 @@ export class DialogEditAdressComponent {
 
   constructor(private route: ActivatedRoute, public dialogRef: MatDialogRef<DialogEditAdressComponent>) {}
 
-  loading:boolean = false;
+  protected loading:boolean = false;
 
   firestore = inject(Firestore);
 
@@ -38,15 +39,31 @@ export class DialogEditAdressComponent {
     });
 
     const unsub = onSnapshot(doc(this.firestore, "users", this.userId), (doc) => {
-      this.userData.push(doc.data());
+      this.userData = doc.data();
     });
   }
 
-  closeEditUser() {
+  closeEditAdress() {
     this.dialogRef.close(DialogEditAdressComponent);
   }
 
-  saveUser() {
+
+  user: User = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthDate: new Date(),
+    street: "",
+    zipCode: 0,
+    city: "",
+  }
+
+  async saveUser() {
+    await setDoc(doc(this.firestore, "users", this.userId), {
+      street: this.user.street,
+      zipCode: this.user.zipCode,
+      city: this.user.city,
+    })
     this.dialogRef.close(DialogEditAdressComponent);
   }
 
