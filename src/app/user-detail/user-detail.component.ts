@@ -40,6 +40,8 @@ export class UserDetailComponent {
       this.userId = paramMap.get('id');
     });
 
+  
+
   }
 
   editAdress() {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Firestore } from '@angular/fire/firestore';
 import { onSnapshot, doc, setDoc } from '@firebase/firestore';
@@ -31,13 +31,14 @@ export class DialogEditAdressComponent {
   firestore = inject(Firestore);
 
   userId:any = '';
+  @Input() userData?: User;
 
 
   ngOnInit() {
     this.route.paramMap.subscribe( paramMap => {
       this.userId = paramMap.get('id');
     });
-
+    console.log(this.userData)
   }
 
   closeEditAdress() {
