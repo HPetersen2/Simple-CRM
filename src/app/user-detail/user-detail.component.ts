@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-user-detail',
@@ -19,20 +20,26 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
 })
 export class UserDetailComponent {
 
-  constructor(private route: ActivatedRoute, public dialog:MatDialog) {}
+  constructor(private route: ActivatedRoute, public dialog:MatDialog) { }
 
   userId:any = '';
   firestore = inject(Firestore);
-  userData:any = [];
+
+  userData: User = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthDate: new Date(),
+    street: "",
+    zipCode: 0,
+    city: "",
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe( paramMap => {
       this.userId = paramMap.get('id');
     });
 
-    const unsub = onSnapshot(doc(this.firestore, "users", this.userId), (doc) => {
-      this.userData = doc.data();
-    });
   }
 
   editAdress() {
@@ -43,6 +50,5 @@ export class UserDetailComponent {
   editUserDetail() {
     this.dialog.open(DialogEditUserComponent);
   }
-
 
 }

@@ -6,25 +6,25 @@
     <div>
         <mat-form-field class="mr-16" appearance="outline">
             <mat-label>First Name</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First Name">
+            <input [disabled]="loading" [(ngModel)]="userData.firstName" matInput placeholder="First Name">
           </mat-form-field>
     
           <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="First Name">
+            <input [disabled]="loading" [(ngModel)]="userData.lastName" matInput placeholder="First Name">
           </mat-form-field>
     </div>
 
     <div>
       <mat-form-field class="full-width" appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="E-Mail">
+          <input [disabled]="loading" [(ngModel)]="userData.email" matInput placeholder="E-Mail">
         </mat-form-field>
     </div>
 
     <div>
         <mat-form-field class="mr-16" class="full-width">
-            <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput [matDatepicker]="picker" placeholder="Choose your birthday">
+            <input [disabled]="loading" [(ngModel)]="userData.birthDate" matInput [matDatepicker]="picker" placeholder="Choose your birthday">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -34,19 +34,19 @@
     <div>
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Street + House No.</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Address">
+            <input [disabled]="loading" [(ngModel)]="userData.street" matInput placeholder="Address">
           </mat-form-field>
     </div>
 
     <div>
         <mat-form-field class="mr-16" appearance="outline">
             <mat-label>Zip code</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
+            <input [disabled]="loading" [(ngModel)]="userData.zipCode" matInput placeholder="Zip code">
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City">
+            <input [disabled]="loading" [(ngModel)]="userData.city" matInput placeholder="City">
           </mat-form-field>
     
     </div>
@@ -54,5 +54,5 @@
 </div>
 <div mat-dialog-actions>
   <button (click)="closeAddUser()" mat-button>Cancel</button>
-  <button [disabled]="loading" (click)="saveUser()" mat-button cdkFocusInitial>Save</button>
+  <button [disabled]="loading" (click)="saveUser()" mat-button>Save</button>
 </div>

@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import { Firestore, collectionData } from '@angular/fire/firestore';
 import { doc, setDoc, onSnapshot, addDoc, getDocs, collection, query, where} from "firebase/firestore";
-import { User } from '../interfaces/user';
+import { User } from '../interfaces/user.interface';
 import { RouterLink } from '@angular/router';
 
 

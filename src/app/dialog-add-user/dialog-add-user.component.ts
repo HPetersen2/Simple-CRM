@@ -13,7 +13,7 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { doc, setDoc, onSnapshot, addDoc  } from "firebase/firestore"; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
-import { User } from '../interfaces/user';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -27,13 +27,12 @@ export class DialogAddUserComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
-  loading:boolean = true;
+  loading:boolean = false;
 
   firestore = inject(Firestore);
   userCollection = collection(this.firestore, 'users');
-
-
-  user: User = {
+  
+  userData: User = {
     firstName: "",
     lastName: "",
     email: "",
@@ -46,13 +45,13 @@ export class DialogAddUserComponent {
   async saveUser() {
     this.loading = true;
     await addDoc(this.userCollection, {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      birthDate: this.user.birthDate,
-      street: this.user.street,
-      zipCode: this.user.zipCode,
-      city: this.user.city,
-      email: this.user.email,
+      firstName: this.userData.firstName,
+      lastName: this.userData.lastName,
+      birthDate: this.userData.birthDate,
+      street: this.userData.street,
+      zipCode: this.userData.zipCode,
+      city: this.userData.city,
+      email: this.userData.email,
     });
     this.loading = false;
     this.dialogRef.close();

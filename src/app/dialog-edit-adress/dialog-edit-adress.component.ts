@@ -13,7 +13,7 @@ import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { User } from '../interfaces/user';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-dialog-edit-adress',
@@ -31,42 +31,21 @@ export class DialogEditAdressComponent {
   firestore = inject(Firestore);
 
   userId:any = '';
-  userData:any = [];
+
 
   ngOnInit() {
     this.route.paramMap.subscribe( paramMap => {
       this.userId = paramMap.get('id');
     });
 
-    const unsub = onSnapshot(doc(this.firestore, "users", this.userId), (doc) => {
-      this.userData = doc.data();
-    });
   }
 
   closeEditAdress() {
     this.dialogRef.close(DialogEditAdressComponent);
   }
 
-
-  user: User = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    birthDate: new Date(),
-    street: "",
-    zipCode: 0,
-    city: "",
-  }
-
   async saveUser() {
-    await setDoc(doc(this.firestore, "users", this.userId), {
-      street: this.user.street,
-      zipCode: this.user.zipCode,
-      city: this.user.city,
-    })
+    await setDoc(doc(this.firestore, "users", this.userId), this.userData);
     this.dialogRef.close(DialogEditAdressComponent);
   }
-
-  
-
 }
