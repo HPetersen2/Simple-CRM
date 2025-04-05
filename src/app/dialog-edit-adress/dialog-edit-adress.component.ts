@@ -13,12 +13,13 @@ import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-dialog-edit-adress',
   standalone: true,
-  imports: [CommonModule, MatFormField, MatIconModule, MatButtonModule, MatMenuModule, MatCardModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule],
+  imports: [CommonModule, MatFormField, MatIconModule, MatButtonModule, MatMenuModule, MatCardModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, MatProgressSpinnerModule],
   templateUrl: './dialog-edit-adress.component.html',
   styleUrl: './dialog-edit-adress.component.scss'
 })
@@ -31,22 +32,24 @@ export class DialogEditAdressComponent {
   firestore = inject(Firestore);
 
   userId:any = '';
-  @Input() userData?: User;
-
-
-  ngOnInit() {
-    this.route.paramMap.subscribe( paramMap => {
-      this.userId = paramMap.get('id');
-    });
-    console.log(this.userData)
-  }
+  userData = new User();
 
   closeEditAdress() {
     this.dialogRef.close(DialogEditAdressComponent);
   }
 
   async saveUser() {
-    await setDoc(doc(this.firestore, "users", this.userId), this.userData);
+    this.loading = true;
+    await setDoc(doc(this.firestore, "users", this.userId), {
+      firstName: this.userData.firstName,
+      lastName: this.userData.lastName,
+      email: this.userData.email,
+      birthDate: this.userData.birthDate,
+      street: this.userData.street,
+      zipCode: this.userData.zipCode,
+      city: this.userData.city,
+    });
+    this.loading = false;
     this.dialogRef.close(DialogEditAdressComponent);
   }
 }

@@ -25,32 +25,30 @@ export class UserDetailComponent {
   userId:any = '';
   firestore = inject(Firestore);
 
-  userData: User = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    birthDate: new Date(),
-    street: "",
-    zipCode: 0,
-    city: "",
-  }
+  userData = new User();
 
   ngOnInit() {
     this.route.paramMap.subscribe( paramMap => {
       this.userId = paramMap.get('id');
     });
 
-  
+    const userRef = doc(this.firestore, "users", this.userId);
+    onSnapshot(userRef, (doc) => {
+      this.userData = doc.data() as User;
+    })
 
   }
 
   editAdress() {
     const dialog = this.dialog.open(DialogEditAdressComponent);
     dialog.componentInstance.userData = this.userData;
+    dialog.componentInstance.userId = this.userId;
   }
 
   editUserDetail() {
-    this.dialog.open(DialogEditUserComponent);
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.userData = this.userData;
+    dialog.componentInstance.userId = this.userId;
   }
 
 }
