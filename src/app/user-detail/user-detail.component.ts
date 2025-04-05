@@ -41,13 +41,13 @@ export class UserDetailComponent {
 
   editAdress() {
     const dialog = this.dialog.open(DialogEditAdressComponent);
-    dialog.componentInstance.userData = this.userData;
+    dialog.componentInstance.userData = new User(this.userData);
     dialog.componentInstance.userId = this.userId;
   }
 
   editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    dialog.componentInstance.userData = this.userData;
+    dialog.componentInstance.userData = new User(this.userData);
     dialog.componentInstance.userId = this.userId;
   }
 
