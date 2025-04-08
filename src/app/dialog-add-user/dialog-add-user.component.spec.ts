@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgModule } from '@angular/core';
 
 describe('DialogAddUserComponent', () => {
   let component: DialogAddUserComponent;
@@ -18,13 +19,13 @@ describe('DialogAddUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogAddUserComponent, CommonModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatProgressSpinnerModule, MatDialogRef],
-      providers: [provideNativeDateAdapter, MatDialog,
-        {
+      imports: [DialogAddUserComponent, CommonModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatProgressSpinnerModule, NgModule],
+      providers: [provideNativeDateAdapter,
+        { 
           provide: MatDialogRef,
-          useValue: {}
-        }, MatDialog]
-    })
+          useValue: []
+        }]
+  })
     .compileComponents();
     
     fixture = TestBed.createComponent(DialogAddUserComponent);

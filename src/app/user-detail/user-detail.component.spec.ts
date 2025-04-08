@@ -15,7 +15,10 @@ describe('UserDetailComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserDetailComponent, MatCardModule, MatIconModule, MatButtonModule, MatMenuModule, MatDialogModule],
-      providers: [MatDialogRef, ActivatedRoute]
+      providers: [{ 
+        provide: MatDialogRef,
+        useValue: []
+        }, ActivatedRoute]
     })
     .compileComponents();
     

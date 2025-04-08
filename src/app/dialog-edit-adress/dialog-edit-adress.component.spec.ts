@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 describe('DialogEditAdressComponent', () => {
   let component: DialogEditAdressComponent;
@@ -19,7 +20,7 @@ describe('DialogEditAdressComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogEditAdressComponent, CommonModule, MatFormField, MatIconModule, MatButtonModule, MatMenuModule, MatCardModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, MatProgressSpinnerModule, MatDialogModule],
+      imports: [DialogEditAdressComponent, CommonModule, MatFormField, MatIconModule, MatButtonModule, MatMenuModule, MatCardModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, MatProgressSpinnerModule, MatDialogModule, ActivatedRoute, NgModule],
       providers: [{
         provide: MatDialogRef,
         useValue: {}

@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 describe('DialogEditUserComponent', () => {
   let component: DialogEditUserComponent;
@@ -21,11 +22,11 @@ describe('DialogEditUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogEditUserComponent, MatButtonModule, MatProgressSpinnerModule, MatFormField, MatMenuModule, MatCardModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, NgIf],
-      providers: [provideNativeDateAdapter, {provide: ActivatedRoute, useValue: ActivatedRoute}, {
+      imports: [DialogEditUserComponent, MatButtonModule, MatProgressSpinnerModule, MatFormField, MatMenuModule, MatCardModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatTooltipModule, MatDialogModule, MatInputModule, MatFormFieldModule, NgIf, ActivatedRoute, NgModule],
+      providers: [provideNativeDateAdapter, {
         provide: MatDialogRef,
         useValue: {}
-      },]
+      }, ActivatedRoute]
     })
     .compileComponents();
     
