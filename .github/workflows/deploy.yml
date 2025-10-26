@@ -13,15 +13,19 @@ jobs:
       with:
         node-version: 12.16.3
 
-    - name: Install and build
-      run:
-        npm i
-        npm run build
-    
+    - name: Installiere Abhängigkeiten
+      run: npm i
+
+    - name: Baue die Anwendung
+      run: npm run build
+
+    - name: Überprüfe das Verzeichnis
+      run: ls -la ./dist
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
         server: henrik-petersen.developerakademie.net
-        username: myFtpUserName
-        password: ${{ secrets.ftp_password }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./dist/simple-crm/
